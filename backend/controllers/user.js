@@ -188,6 +188,7 @@ const login = async (req, res) => {
   if (!userLogin)
     return res.status(400).send({ message: "Wrong email or password" });
  
+  //PP-02
    if(!userLogin.dbStatus)
    return res.status(400).send({ message: "User Disable" });
 

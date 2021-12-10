@@ -82,11 +82,15 @@ const updateTask = async (req, res) => {
 
 const deleteTask = async (req, res) => {
   let taskImg = await board.findById({ _id: req.params["_id"] });
+  let serverImg= '';
+  
 
+  if (taskImg != null){ 
   taskImg = taskImg.imageUrl;
   taskImg = taskImg.split("/")[4];
-  let serverImg = "./uploads/" + taskImg;
-
+  serverImg = "./uploads/" + taskImg;
+  
+  
   const taskDelete = await board.findByIdAndDelete({ _id: req.params["_id"] });
   if (!taskDelete) return res.status(400).send({ message: "Task not found" });
 
@@ -96,6 +100,7 @@ const deleteTask = async (req, res) => {
   } catch (e) {
     console.log("Image no found in server");
   }
+ }
 };
 
 export default { saveTask, saveTaskImg, listTask, updateTask, deleteTask };

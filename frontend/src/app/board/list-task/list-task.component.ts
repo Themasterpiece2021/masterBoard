@@ -125,6 +125,7 @@ export class ListTaskComponent implements OnInit {
 
   dropUpdate() {
     this.taskTodo.forEach((tk: any) => {
+      
       if (tk.taskStatus !== 'to-do') {
         this.updateTask(tk, 'to-do');
       }
@@ -142,6 +143,7 @@ export class ListTaskComponent implements OnInit {
   }
 
   deleteTask(task: any) {
+//  pp-05
     this._boardService.deleteTask(task).subscribe({
       next: (v) => {
         let index = this.taskData.indexOf(task);
@@ -149,6 +151,7 @@ export class ListTaskComponent implements OnInit {
           this.taskData.splice(index, 1);
           this.message = v.message;
           this.openSnackBarSuccesfull();
+          this.resetList();
         }
       },
       error: (e) => {

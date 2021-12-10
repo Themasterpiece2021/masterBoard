@@ -37,15 +37,15 @@ export class UpdateRoleComponent implements OnInit {
   ngOnInit(): void {
     this._Arouter.params.subscribe((params) => {
       this._id = params['_id'];
-      this._roleService.findRole(this._id).subscribe(
-        (res) => {
-          this.registerData = res.role;
+      this._roleService.findRole(this._id).subscribe({
+        next: (v) => {
+          this.registerData = v.roleId;
         },
-        (err) => {
+        error: (err) => {
           this.message = err.error;
           this.openSnackBarError();
-        }
-      );
+        },
+      })
     });
   }
 
@@ -54,18 +54,18 @@ export class UpdateRoleComponent implements OnInit {
       this.message = 'Failed process: Imcomplete data';
       this.openSnackBarError();
     } else {
-      this._roleService.updateRole(this.registerData).subscribe(
-        (res) => {
+      this._roleService.updateRole(this.registerData).subscribe({
+        next: ( v) => {
           this._router.navigate(['/listRole']);
           this.message = 'Successfull edit role';
           this.openSnackBarSuccesfull();
           this.registerData = {};
         },
-        (err) => {
+        error: (err) => {
           this.message = err.error;
           this.openSnackBarError();
         }
-      );
+      });
     }
   }
 
