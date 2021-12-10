@@ -1,4 +1,11 @@
 
+  /* pp-07 */
+  .bgComponent {
+    background-color: #a5abaf;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 30%;
+  }
   
   .accordion_display {
     display: flex;

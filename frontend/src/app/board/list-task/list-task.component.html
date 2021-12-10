@@ -1,3 +1,5 @@
+<!-- pp-07 -->
+<div class="bgComponent">
 <div class="container">
   <div class="row">
     <div class="example-container col">
@@ -219,12 +221,16 @@
                   <mat-panel-description>
                     {{ item.description }}
                   </mat-panel-description>
-                  <mat-panel-description>
+                  <!-- PP-06  TRELO-->
+                  <mat-panel-description *ngIf="item.imageUrl != null">
                     <img
                       class="card-img-top image_center"
+                      
                       src="{{ item.imageUrl }}"
+                         
                     />
                   </mat-panel-description>
+
                   <mat-action-row>
                     <button
                       class="btnSelectTodo"
@@ -260,4 +266,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>
